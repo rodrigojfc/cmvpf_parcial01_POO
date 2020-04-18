@@ -2,14 +2,14 @@ package com.RJFC.x00053714;
 
 import java.util.List;
 
-public class Empleado {
+public abstract class  Empleado {
     protected String name;
     protected String puesto;
     protected List<Documento> documentos;
     protected  double salario;
 
     //constructor
-    public Empleado(String name, String puesto, double salario) {
+    public  Empleado(String name, String puesto, double salario) {
         this.name = name;
         this.puesto = puesto;
         this.salario = salario;
