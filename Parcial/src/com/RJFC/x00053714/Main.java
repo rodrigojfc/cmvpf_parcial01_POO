@@ -35,16 +35,12 @@ public class Main {
                 case 5:
 
                     break;
-                case 6:
 
-                    break;
-                case 7:
-                    break;
-                case 8:
+                case 6:
                     JOptionPane.showMessageDialog(null, "Saliendo . . .");
                     break;
             }
-        } while(op != 8);
+        } while(op != 6);
     }
 
     }
