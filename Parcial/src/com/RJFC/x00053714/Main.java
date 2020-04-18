@@ -1,11 +1,15 @@
 package com.RJFC.x00053714;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        //declaracion de variables
+        ArrayList<Empleado> nuevosEmpleados = new ArrayList<>();
+        Empresa unaEmpresa;
         byte op = 0;
 
         String menu = "1. Agregar empleado\n" +
@@ -21,10 +25,22 @@ public class Main {
 
             switch (op){
                 case 1:
-
+                    String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
+                    String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
+                    double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
+                    byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
+                    if(eStatus == 1){
+                        int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
+                        nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
+                    }
+                    else{
+                        int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero telefonico del empleado"));
+                        nuevosEmpleados.add(new PlazaFija(auxName, eRole,eSalary, ePhonenum));
+                    }
                     break;
                 case 2:
-
+                    auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
+                    unaEmpresa = new Empresa(auxName);
                     break;
                 case 3:
 
