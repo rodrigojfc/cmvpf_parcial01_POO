@@ -71,13 +71,22 @@ public class Main {
                                 JOptionPane.showMessageDialog(null, obj.toString());
                             }
                         }
-
                         break;
                     case 4:
-
+                        auxName = JOptionPane.showInputDialog(null, "Ingrese nombre de la persona a calcular salario");
+                        if(unaEmpresa.getPlanilla().isEmpty())
+                            JOptionPane.showMessageDialog(null, "No hay lista de empleados");
+                        else {
+                            for (Empleado obj : unaEmpresa.getPlanilla()) {
+                                if (obj.name.equalsIgnoreCase(auxName)) {
+                                    double salario = CalculadoraImpuestos.calcularPago(obj);
+                                    JOptionPane.showMessageDialog(null, "El salario es:" + salario);
+                                }
+                            }
+                        }
                         break;
                     case 5:
-
+                        JOptionPane.showMessageDialog(null, "Los totales son:\n" + CalculadoraImpuestos.mostrarTotales());
                         break;
 
                     case 6:
