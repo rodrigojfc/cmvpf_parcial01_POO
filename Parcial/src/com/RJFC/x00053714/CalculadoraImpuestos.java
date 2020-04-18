@@ -7,9 +7,9 @@ public final class CalculadoraImpuestos {
 
     }
 
-    public static double calcularPago(Empleado){
+    public static double calcularPago(Empleado UnEmpleado){
 
-        return;
+        return 10.4f; //
     }
 
     public static String mostrarTotales(){

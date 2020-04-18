@@ -1,5 +1,7 @@
 package com.RJFC.x00053714;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Empresa {
@@ -9,6 +11,7 @@ public class Empresa {
     //constructor
     public Empresa(String nombre) {
         this.nombre = nombre;
+        planilla = new ArrayList<>();
     }
 
     //getter
@@ -22,11 +25,19 @@ public class Empresa {
 
     //metodos
     public void addEmpleado(Empleado unEmpleado){
-
+        getPlanilla();
+        planilla.add(unEmpleado);
     }
 
-    public void quitEmpleado(Empleado ripEmpleado){
-
+    public void quitEmpleado(String ripName){
+        if(planilla.isEmpty())
+            JOptionPane.showMessageDialog(null,"No hay lista de empleados");
+        else {
+            for (Empleado obj : planilla) {
+                planilla.removeIf(n -> obj.name.equalsIgnoreCase(ripName));
+            }
+            JOptionPane.showMessageDialog(null,"Se ha despedido al empleado");
+        }
     }
 
 }
