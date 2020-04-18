@@ -18,10 +18,12 @@ public class PlazaFija extends Empleado{
 
     @Override
     public String toString() {
-        return "PlazaFija{" +
-                "name='" + name + '\'' +
-                ", puesto='" + puesto + '\'' +
-                ", salario=" + salario +
-                '}';
+        return "Tipo de contrato: Plaza Fija" +
+                "\nExtension telefonica: " + extension +
+                "\nNombre: " + name +
+                "\nPuesto: " + puesto +
+                documentos.toString() +
+                "\nSalario: $" + salario;
     }
+
 }

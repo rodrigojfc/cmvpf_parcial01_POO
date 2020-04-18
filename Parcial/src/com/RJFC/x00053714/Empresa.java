@@ -39,11 +39,13 @@ public class Empresa {
                 if (unEmpleado.name.equalsIgnoreCase(ripName)) {
                     iterator.remove();
                     JOptionPane.showMessageDialog(null, "Se ha despedido al empleado");
+                    return;
                 }
-                else{
-                    JOptionPane.showMessageDialog(null, "No se encontro al empleado");
-                }
+
+
             }
+        JOptionPane.showMessageDialog(null, "No se encontro al empleado");
         }
     }
+
 }
