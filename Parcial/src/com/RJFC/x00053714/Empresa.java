@@ -6,11 +6,12 @@ import java.util.List;
 
 public class Empresa {
     private String nombre;
-    private List<Empleado> planilla = new ArrayList<>();
+    private List<Empleado> planilla;
 
     //constructor
     public Empresa(String nombre) {
         this.nombre = nombre;
+        planilla = new ArrayList<>();
     }
 
     //getter
@@ -24,18 +25,18 @@ public class Empresa {
 
     //metodos
     public void addEmpleado(Empleado unEmpleado){
+        getPlanilla();
         planilla.add(unEmpleado);
     }
 
     public void quitEmpleado(String ripName){
         if(planilla.isEmpty())
-            JOptionPane.showConfirmDialog(null,"No hay lista de empleados");
+            JOptionPane.showMessageDialog(null,"No hay lista de empleados");
         else {
             for (Empleado obj : planilla) {
-                if (ripName.equalsIgnoreCase(obj.name))
-                    planilla.remove(0);
+                planilla.removeIf(n -> obj.name.equalsIgnoreCase(ripName));
             }
-            JOptionPane.showConfirmDialog(null,"Se ha despedido al empleado");
+            JOptionPane.showMessageDialog(null,"Se ha despedido al empleado");
         }
     }
 

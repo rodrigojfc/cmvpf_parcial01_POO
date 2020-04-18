@@ -12,6 +12,9 @@ public class Main {
         Empresa unaEmpresa;
         byte op = 0;
 
+        String bizName = JOptionPane.showInputDialog(null, "Ingrese nombre de la empresa");
+        unaEmpresa = new Empresa(bizName);
+
         String menu = "1. Agregar empleado\n" +
                 "2. Despedir empleado\n" +
                 "3. Ver lista de empleados\n" +
@@ -31,23 +34,26 @@ public class Main {
                         byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
                         if (eStatus == 2) {
                             int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
-                            nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
+                            //nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
+                            unaEmpresa.addEmpleado(new ServicioProfesional(auxName, eRole, eSalary, eContract));
                         }
                         else{
                             int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero telefonico del empleado"));
-                            nuevosEmpleados.add(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
-                        }
-                        unaEmpresa = new Empresa(auxName);
-                        for(Empleado obj: nuevosEmpleados){
-                            unaEmpresa.addEmpleado(obj);
+                           // nuevosEmpleados.add(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
+                            unaEmpresa.addEmpleado(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
                         }
                         break;
                     case 2:
                         auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
-                        unaEmpresa = new Empresa(auxName);
-                        unaEmpresa.quitEmpleado(auxName);
+                            unaEmpresa.quitEmpleado(auxName);
+                        /*for(Empleado obj : nuevosEmpleados){
+                            nuevosEmpleados.removeIf(n -> obj.name.equalsIgnoreCase(auxName));
+                            }*/
                         break;
                     case 3:
+                        for(Empleado obj : nuevosEmpleados){
+                            JOptionPane.showMessageDialog(null,obj.toString());
+                        }
 
                         break;
                     case 4:
