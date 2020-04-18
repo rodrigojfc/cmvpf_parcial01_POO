@@ -2,6 +2,7 @@ package com.RJFC.x00053714;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Empresa {
@@ -33,11 +34,16 @@ public class Empresa {
         if(planilla.isEmpty())
             JOptionPane.showMessageDialog(null,"No hay lista de empleados");
         else {
-            for(Empleado obj : planilla) {
-                planilla.removeIf(n -> obj.name.equalsIgnoreCase(ripName));
+            for(Iterator<Empleado> iterator = planilla.iterator(); iterator.hasNext();) {
+                Empleado unEmpleado = iterator.next();
+                if (unEmpleado.name.equalsIgnoreCase(ripName)) {
+                    iterator.remove();
+                    JOptionPane.showMessageDialog(null, "Se ha despedido al empleado");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se encontro al empleado");
+                }
             }
-            JOptionPane.showMessageDialog(null,"Se ha despedido al empleado");
         }
     }
-
 }
