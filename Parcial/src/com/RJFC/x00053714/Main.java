@@ -20,44 +20,50 @@ public class Main {
                 "6. Salir\n" +
                 "Su opcion: ";
 
-        do{
-            op = Byte.parseByte(JOptionPane.showInputDialog(null, menu));
+            do {
+                op = Byte.parseByte(JOptionPane.showInputDialog(null, menu));
 
-            switch (op){
-                case 1:
-                    String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
-                    String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
-                    double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
-                    byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
-                    if(eStatus == 1){
-                        int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
-                        nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
-                    }
-                    else{
-                        int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero telefonico del empleado"));
-                        nuevosEmpleados.add(new PlazaFija(auxName, eRole,eSalary, ePhonenum));
-                    }
-                    break;
-                case 2:
-                    auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
-                    unaEmpresa = new Empresa(auxName);
-                    break;
-                case 3:
+                switch (op) {
+                    case 1:
+                        String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
+                        String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
+                        double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
+                        byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
+                        if (eStatus == 2) {
+                            int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
+                            nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
+                        }
+                        else{
+                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero telefonico del empleado"));
+                            nuevosEmpleados.add(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
+                        }
+                        unaEmpresa = new Empresa(auxName);
+                        for(Empleado obj: nuevosEmpleados){
+                            unaEmpresa.addEmpleado(obj);
+                        }
+                        break;
+                    case 2:
+                        auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
+                        unaEmpresa = new Empresa(auxName);
+                        unaEmpresa.quitEmpleado(auxName);
+                        break;
+                    case 3:
 
-                    break;
-                case 4:
+                        break;
+                    case 4:
 
-                    break;
-                case 5:
+                        break;
+                    case 5:
 
-                    break;
+                        break;
 
-                case 6:
-                    JOptionPane.showMessageDialog(null, "Saliendo . . .");
-                    break;
-            }
-        } while(op != 6);
-    }
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Saliendo . . .");
+                        break;
+                }
+            } while (op != 6);
+
+        }
 
     }
 
