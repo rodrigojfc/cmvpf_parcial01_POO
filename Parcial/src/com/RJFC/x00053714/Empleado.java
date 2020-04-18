@@ -1,5 +1,6 @@
 package com.RJFC.x00053714;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class  Empleado {
@@ -13,6 +14,7 @@ public abstract class  Empleado {
         this.name = name;
         this.puesto = puesto;
         this.salario = salario;
+        documentos = new ArrayList<>();
     }
     //Getters
     public String getName() {
@@ -40,12 +42,12 @@ public abstract class  Empleado {
 
     //Metodos
     public void addDocumento(Documento unDoc){
-
+        getDocumentos();
+        documentos.add(unDoc);
     }
 
     public void removeDocumento(Documento unDoc){
 
     }
-
 
 }

@@ -8,8 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         //declaracion de variables
-        ArrayList<Empleado> nuevosEmpleados = new ArrayList<>();
         Empresa unaEmpresa;
+        Empleado unEmpleado;
+        Documento unDocumento;
         byte op = 0;
 
         String bizName = JOptionPane.showInputDialog(null, "Ingrese nombre de la empresa");
@@ -30,29 +31,45 @@ public class Main {
                     case 1:
                         String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
                         String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
+                        String eDocName = JOptionPane.showInputDialog(null, "Ingrese tipo de documento");
+                        String eDocNumber = JOptionPane.showInputDialog(null, "Ingrese el numero de documento");
                         double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
                         byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
+                        while(eStatus != 1 && eStatus != 2){
+                            eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese una opcion valida" +
+                                    "\n1- Plaza fija\n2- Servicio profesional"));
+                        }
                         if (eStatus == 2) {
                             int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
-                            //nuevosEmpleados.add(new ServicioProfesional(auxName, eRole, eSalary, eContract));
-                            unaEmpresa.addEmpleado(new ServicioProfesional(auxName, eRole, eSalary, eContract));
+
+                            unEmpleado = new ServicioProfesional(auxName, eRole, eSalary, eContract);
+                            unDocumento = new Documento(eDocName, eDocNumber);
+                            unEmpleado.addDocumento(unDocumento);
+                            unaEmpresa.addEmpleado(unEmpleado);
+
                         }
                         else{
-                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero telefonico del empleado"));
-                           // nuevosEmpleados.add(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
-                            unaEmpresa.addEmpleado(new PlazaFija(auxName, eRole, eSalary, ePhonenum));
+                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de extension telefonica del empleado"));
+
+                            unEmpleado = new PlazaFija(auxName, eRole, eSalary, ePhonenum);
+                            unDocumento = new Documento(eDocName, eDocNumber);
+                            unEmpleado.addDocumento(unDocumento);
+                            unaEmpresa.addEmpleado(unEmpleado);
                         }
                         break;
                     case 2:
                         auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
                             unaEmpresa.quitEmpleado(auxName);
-                        /*for(Empleado obj : nuevosEmpleados){
-                            nuevosEmpleados.removeIf(n -> obj.name.equalsIgnoreCase(auxName));
-                            }*/
+
                         break;
                     case 3:
-                        for(Empleado obj : nuevosEmpleados){
-                            JOptionPane.showMessageDialog(null,obj.toString());
+                        if(unaEmpresa.getPlanilla().isEmpty())
+                            JOptionPane.showMessageDialog(null,"No hay lista de empleados");
+                        else {
+
+                            for (Empleado obj : unaEmpresa.getPlanilla()) {
+                                JOptionPane.showMessageDialog(null, obj.toString());
+                            }
                         }
 
                         break;

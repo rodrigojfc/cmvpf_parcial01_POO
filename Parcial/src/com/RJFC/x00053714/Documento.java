@@ -16,6 +16,12 @@ public class Documento {
     public String getNumero() {
         return numero;
     }
+
+    @Override
+    public String toString() {
+        return "\nTipo de documento: " + nombre +
+                "\nNumero de documento: " + numero;
+    }
 }
 
 
