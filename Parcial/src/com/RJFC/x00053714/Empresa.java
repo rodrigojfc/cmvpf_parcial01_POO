@@ -33,7 +33,7 @@ public class Empresa {
         if(planilla.isEmpty())
             JOptionPane.showMessageDialog(null,"No hay lista de empleados");
         else {
-            for (Empleado obj : planilla) {
+            for(Empleado obj : planilla) {
                 planilla.removeIf(n -> obj.name.equalsIgnoreCase(ripName));
             }
             JOptionPane.showMessageDialog(null,"Se ha despedido al empleado");
