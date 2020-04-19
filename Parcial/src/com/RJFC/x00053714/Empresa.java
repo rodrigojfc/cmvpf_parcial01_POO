@@ -31,8 +31,9 @@ public class Empresa {
     }
 
     public void quitEmpleado(String ripName){
+
         if(planilla.isEmpty())
-            JOptionPane.showMessageDialog(null,"No hay lista de empleados");
+            JOptionPane.showMessageDialog(null,"La lista de empleados esta vacia");
         else {
             for(Iterator<Empleado> iterator = planilla.iterator(); iterator.hasNext();) {
                 Empleado unEmpleado = iterator.next();

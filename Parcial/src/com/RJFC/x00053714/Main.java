@@ -64,7 +64,7 @@ public class Main {
                         break;
                     case 3:
                         if(unaEmpresa.getPlanilla().isEmpty())
-                            JOptionPane.showMessageDialog(null,"No hay lista de empleados");
+                            JOptionPane.showMessageDialog(null,"La lista de empleados esta vacia");
                         else {
 
                             for (Empleado obj : unaEmpresa.getPlanilla()) {
@@ -74,19 +74,25 @@ public class Main {
                         break;
                     case 4:
                         auxName = JOptionPane.showInputDialog(null, "Ingrese nombre de la persona a calcular salario");
+
+                        boolean noExiste = true;
+
                         if(unaEmpresa.getPlanilla().isEmpty())
-                            JOptionPane.showMessageDialog(null, "No hay lista de empleados");
+                            JOptionPane.showMessageDialog(null, "La lista de empleados esta vacia");
                         else {
                             for (Empleado obj : unaEmpresa.getPlanilla()) {
                                 if (obj.name.equalsIgnoreCase(auxName)) {
+                                    noExiste = false;
                                     double salario = CalculadoraImpuestos.calcularPago(obj);
-                                    JOptionPane.showMessageDialog(null, "El salario es:" + salario);
+                                    JOptionPane.showMessageDialog(null, "El salario es: $" + salario);
                                 }
                             }
+                            if(noExiste)
+                                JOptionPane.showMessageDialog(null, "El empleado no esta en el sistema");
                         }
                         break;
                     case 5:
-                        JOptionPane.showMessageDialog(null, "Los totales son:\n" + CalculadoraImpuestos.mostrarTotales());
+                        JOptionPane.showMessageDialog(null, CalculadoraImpuestos.mostrarTotales());
                         break;
 
                     case 6:
