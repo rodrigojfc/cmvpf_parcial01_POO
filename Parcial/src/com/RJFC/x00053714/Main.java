@@ -27,105 +27,107 @@ public class Main {
                 "Su opcion: ";
 
             do {
-                op = Byte.parseByte(JOptionPane.showInputDialog(null, menu));
+                try {
+                    op = Byte.parseByte(JOptionPane.showInputDialog(null, menu));
 
-                switch (op) {
+                    switch (op) {
 
-                    // Agregar empleado
-                    case 1:
+                        // Agregar empleado
+                        case 1:
 
-                        String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
-                        String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
-                        String eDocName = JOptionPane.showInputDialog(null, "Ingrese tipo de documento");
-                        String eDocNumber = JOptionPane.showInputDialog(null, "Ingrese el numero de documento");
-                        double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
-                        byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
+                            String auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado");
+                            String eRole = JOptionPane.showInputDialog(null, "Ingrese cargo del empleado");
+                            String eDocName = JOptionPane.showInputDialog(null, "Ingrese tipo de documento");
+                            String eDocNumber = JOptionPane.showInputDialog(null, "Ingrese el numero de documento");
+                            double eSalary = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el salario del empleado"));
+                            byte eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese\n1- Plaza fija\n2- Servicio profesional"));
 
-                        while(eStatus != 1 && eStatus != 2){
-                            eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese una opcion valida" +
-                                    "\n1- Plaza fija\n2- Servicio profesional"));
-                        }
+                            while (eStatus != 1 && eStatus != 2) {
+                                eStatus = Byte.parseByte(JOptionPane.showInputDialog(null, "Ingrese una opcion valida" +
+                                        "\n1- Plaza fija\n2- Servicio profesional"));
+                            }
 
-                        // Agregar los datos del empleado segun su tipo de contrato
-                        if (eStatus == 2) {
-                            int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
+                            // Agregar los datos del empleado segun su tipo de contrato
+                            if (eStatus == 2) {
+                                int eContract = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese meses de contrato"));
 
-                            unEmpleado = new ServicioProfesional(auxName, eRole, eSalary, eContract);
-                            unDocumento = new Documento(eDocName, eDocNumber);
-                            unEmpleado.addDocumento(unDocumento);
-                            unaEmpresa.addEmpleado(unEmpleado);
+                                unEmpleado = new ServicioProfesional(auxName, eRole, eSalary, eContract);
+                                unDocumento = new Documento(eDocName, eDocNumber);
+                                unEmpleado.addDocumento(unDocumento);
+                                unaEmpresa.addEmpleado(unEmpleado);
 
-                        }
+                            } else {
+                                int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de telefono del empleado"));
 
-                        else{
-                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de telefono del empleado"));
+                                unEmpleado = new PlazaFija(auxName, eRole, eSalary, ePhonenum);
+                                unDocumento = new Documento(eDocName, eDocNumber);
+                                unEmpleado.addDocumento(unDocumento);
+                                unaEmpresa.addEmpleado(unEmpleado);
+                            }
+                            break;
 
-                            unEmpleado = new PlazaFija(auxName, eRole, eSalary, ePhonenum);
-                            unDocumento = new Documento(eDocName, eDocNumber);
-                            unEmpleado.addDocumento(unDocumento);
-                            unaEmpresa.addEmpleado(unEmpleado);
-                        }
-                        break;
-
-                    // Despedir empleado
-                    case 2:
-                        auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
+                        // Despedir empleado
+                        case 2:
+                            auxName = JOptionPane.showInputDialog(null, "Ingrese nombre del empleado a despedir");
                             unaEmpresa.quitEmpleado(auxName);
 
-                        break;
+                            break;
 
-                    // Mostrar empleados ingresados
-                    case 3:
+                        // Mostrar empleados ingresados
+                        case 3:
 
-                        // Corroborando si hay empleados en la lista o no
-                        if(unaEmpresa.getPlanilla().isEmpty())
-                            JOptionPane.showMessageDialog(null,"La lista de empleados esta vacia");
-                        else {
+                            // Corroborando si hay empleados en la lista o no
+                            if (unaEmpresa.getPlanilla().isEmpty())
+                                JOptionPane.showMessageDialog(null, "La lista de empleados esta vacia");
+                            else {
 
-                            for (Empleado obj : unaEmpresa.getPlanilla()) {
-                                JOptionPane.showMessageDialog(null, obj.toString());
-                            }
-                        }
-                        break;
-
-                    // Calcular salario liquido de un empleado
-                    case 4:
-
-                        // Consultar por nombres
-                        auxName = JOptionPane.showInputDialog(null, "Ingrese nombre de la persona a calcular salario");
-                        boolean noExiste = true;
-
-                        if(unaEmpresa.getPlanilla().isEmpty())
-                            JOptionPane.showMessageDialog(null, "La lista de empleados esta vacia");
-                        else {
-                            for (Empleado obj : unaEmpresa.getPlanilla()) {
-                                if (obj.name.equalsIgnoreCase(auxName)) {
-                                    noExiste = false;
-                                    double salario = CalculadoraImpuestos.calcularPago(obj);
-                                    JOptionPane.showMessageDialog(null, "El salario es: $" + salario);
+                                for (Empleado obj : unaEmpresa.getPlanilla()) {
+                                    JOptionPane.showMessageDialog(null, obj.toString());
                                 }
                             }
-                            if(noExiste)
-                                JOptionPane.showMessageDialog(null, "El empleado no esta en el sistema");
-                        }
-                        break;
+                            break;
 
-                    // Mostrar totales de descuentos acumulados de todos los empleados a quienes se les ha calculado salario liquido
-                    case 5:
-                        JOptionPane.showMessageDialog(null, CalculadoraImpuestos.mostrarTotales());
-                        break;
+                        // Calcular salario liquido de un empleado
+                        case 4:
 
-                    // Opcion salir
-                    case 6:
-                        JOptionPane.showMessageDialog(null, "Saliendo . . .");
-                        break;
+                            // Consultar por nombres
+                            auxName = JOptionPane.showInputDialog(null, "Ingrese nombre de la persona a calcular salario");
+                            boolean noExiste = true;
 
-                    default:
-                        JOptionPane.showMessageDialog(null, "Opcion incorrecta!");
-                        break;
+                            if (unaEmpresa.getPlanilla().isEmpty())
+                                JOptionPane.showMessageDialog(null, "La lista de empleados esta vacia");
+                            else {
+                                for (Empleado obj : unaEmpresa.getPlanilla()) {
+                                    if (obj.name.equalsIgnoreCase(auxName)) {
+                                        noExiste = false;
+                                        double salario = CalculadoraImpuestos.calcularPago(obj);
+                                        JOptionPane.showMessageDialog(null, "El salario es: $" + salario);
+                                    }
+                                }
+                                if (noExiste)
+                                    JOptionPane.showMessageDialog(null, "El empleado no esta en el sistema");
+                            }
+                            break;
+
+                        // Mostrar totales de descuentos acumulados de todos los empleados a quienes se les ha calculado salario liquido
+                        case 5:
+                            JOptionPane.showMessageDialog(null, CalculadoraImpuestos.mostrarTotales());
+                            break;
+
+                        // Opcion salir
+                        case 6:
+                            JOptionPane.showMessageDialog(null, "Saliendo . . .");
+                            break;
+
+                        default:
+                            JOptionPane.showMessageDialog(null, "Opcion incorrecta!");
+                            break;
+                    }
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Tipo de dato ingresado no valido");
                 }
-
             } while (op != 6);
+
 
         }
 
