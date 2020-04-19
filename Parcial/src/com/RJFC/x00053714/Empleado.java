@@ -9,14 +9,14 @@ public abstract class  Empleado {
     protected List<Documento> documentos;
     protected  double salario;
 
-    //constructor
+    // Constructor
     public  Empleado(String name, String puesto, double salario) {
         this.name = name;
         this.puesto = puesto;
         this.salario = salario;
         documentos = new ArrayList<>();
     }
-    //Getters
+    // Getters
     public String getName() {
         return name;
     }
@@ -33,9 +33,7 @@ public abstract class  Empleado {
         return salario;
     }
 
-    // setter
-
-
+    // Setter
     public void setSalario(double salario) {
         this.salario = salario;
     }

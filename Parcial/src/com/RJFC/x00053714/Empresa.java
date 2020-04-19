@@ -9,13 +9,13 @@ public class Empresa {
     private String nombre;
     private List<Empleado> planilla;
 
-    //constructor
+    // Constructor
     public Empresa(String nombre) {
         this.nombre = nombre;
         planilla = new ArrayList<>();
     }
 
-    //getter
+    // Getters
     public String getNombre() {
         return nombre;
     }
@@ -24,7 +24,7 @@ public class Empresa {
         return planilla;
     }
 
-    //metodos
+    // Metodos
     public void addEmpleado(Empleado unEmpleado){
         getPlanilla();
         planilla.add(unEmpleado);
