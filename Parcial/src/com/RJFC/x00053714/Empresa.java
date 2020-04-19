@@ -42,8 +42,6 @@ public class Empresa {
                     JOptionPane.showMessageDialog(null, "Se ha despedido al empleado");
                     return;
                 }
-
-
             }
         JOptionPane.showMessageDialog(null, "No se encontro al empleado");
         }

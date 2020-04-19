@@ -1,6 +1,7 @@
 package com.RJFC.x00053714;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,6 +126,9 @@ public class Main {
                     }
                 }catch(NumberFormatException e){
                     JOptionPane.showMessageDialog(null, "Tipo de dato ingresado no valido");
+                }
+                catch(NullPointerException e){
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido en error\nRegresando al menu...");
                 }
             } while (op != 6);
 
