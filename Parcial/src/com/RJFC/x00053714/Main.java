@@ -58,7 +58,7 @@ public class Main {
                         }
 
                         else{
-                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de extension telefonica del empleado"));
+                            int ePhonenum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese numero de telefono del empleado"));
 
                             unEmpleado = new PlazaFija(auxName, eRole, eSalary, ePhonenum);
                             unDocumento = new Documento(eDocName, eDocNumber);

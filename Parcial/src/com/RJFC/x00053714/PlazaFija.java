@@ -23,7 +23,7 @@ public class PlazaFija extends Empleado{
     @Override
     public String toString() {
         return "Tipo de contrato: Plaza Fija" +
-                "\nExtension telefonica: " + extension +
+                "\nNumero de telefono de oficina: " + extension +
                 "\nNombre: " + name +
                 "\nPuesto: " + puesto +
                 documentos.toString() +
